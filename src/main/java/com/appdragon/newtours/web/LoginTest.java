@@ -15,29 +15,26 @@ import com.appdragon.newtours.utils.XpathLocator;
 
 public class LoginTest {
 
-	WebDriver driver;
+	public WebDriver driver;
+
 	@BeforeClass
-	public void BrwoserOpen()
-	{
-		System.setProperty("webdriver.gecko.driver","E://geckodriver-v0.11.1-win64/wires.exe");
-	
-		 driver=new FirefoxDriver();
+	public void BrwoserOpen() {
+		System.setProperty("webdriver.gecko.driver", "E://geckodriver-v0.11.1-win64/wires.exe");
+
+		driver = new FirefoxDriver();
 		driver.get(PageUrl.pageurl);
 		driver.manage().window().maximize();
 	}
-	
+
 	@Test
-	public void login()
-	{
-		
+	public void login() {
+
 		driver.findElement(By.xpath(XpathLocator.LoginPage.username)).sendKeys("demo");
 		driver.findElement(By.xpath(XpathLocator.LoginPage.password)).sendKeys("demo");
 		driver.findElement(By.xpath(XpathLocator.LoginPage.signin)).click();
-		
-		
+
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		
-				
 		driver.findElement(By.xpath(XpathLocator.flightFind.typebutton)).click();
 		new Select (driver.findElement(By.xpath(XpathLocator.flightFind.passengersdropdown))).selectByVisibleText("4");
 		new Select (driver.findElement(By.xpath(XpathLocator.flightFind.departingDropDown))).selectByVisibleText("Paris");
@@ -49,15 +46,12 @@ public class LoginTest {
 		driver.findElement(By.xpath(XpathLocator.flightFind.serviceclassButton)).click();
 		new Select (driver.findElement(By.xpath(XpathLocator.flightFind.airlinedrop))).selectByVisibleText("Unified Airlines");
 		driver.findElement(By.xpath(XpathLocator.flightFind.continuesignin)).click();
-		
-		
-		
+
 	}
-	
+
 	@AfterClass
-	public void closeBrowser()
-	{
+	public void closeBrowser() {
 		driver.close();
-		
+
 	}
 }
